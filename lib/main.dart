@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'FlutterBase',
         home: Scaffold(
-            body: SizedBox.expand(child: RadialMenu()) 
-        )
-    );
+          body: SizedBox.expand(child: RadialMenu()),
+          floatingActionButton: RadialMenu(),
+        ));
   }
 }
 
@@ -109,11 +109,11 @@ class RadialAnimation extends StatelessWidget {
             _buildButton(315, color: Colors.yellow, icon:FontAwesomeIcons.bolt),
             Transform.scale(
               scale: scale.value - 1,
-              child: FloatingActionButton(child: Icon(FontAwesomeIcons.timesCircle), onPressed: _close, backgroundColor: Colors.red),
+              child: FloatingActionButton(heroTag: "expand", child: Icon(FontAwesomeIcons.timesCircle), onPressed: _close, backgroundColor: Colors.red),
             ),
             Transform.scale(
               scale: scale.value,
-              child: FloatingActionButton(child: Icon(FontAwesomeIcons.solidDotCircle), onPressed: _open),
+              child: FloatingActionButton(heroTag: "collapse", child: Icon(FontAwesomeIcons.solidDotCircle), onPressed: _open),
             )
         
         ])
@@ -138,6 +138,7 @@ class RadialAnimation extends StatelessWidget {
       ),
 
       child: FloatingActionButton(
+        heroTag: angle,
         child: Icon(icon), backgroundColor: color, onPressed: _close, elevation: 0)
     );
   }
